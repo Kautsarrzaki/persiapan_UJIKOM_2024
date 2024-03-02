@@ -6,7 +6,6 @@
   <title>DIGITAL LIBRARY</title>
   <link rel="icon" type="png" href="adminv/docs/assets/img/PERPUS.png">
 
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
     <link rel="stylesheet" href="Adminv/plugins/fontawesome-free/css/all.min.css">
