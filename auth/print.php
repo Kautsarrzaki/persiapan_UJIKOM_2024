@@ -5,11 +5,8 @@
             <div class="card-body">
                <h1>Data Peminjaman</h1>
 <hr>
-<div class="mb-3">
-<a href="dashboard.php?page=printlaporan" class="btn btn-primary btn-sm"><i class="nav-icon fas fa-print"></i> Print</a>
-</div>
 <div class="table-responsive">
-            <table class="table table-bordered" id="datatable" width="100%" cellspacing="0">
+            <table class="table table-bordered" width="100%" cellspacing="0">
         <thead>
             <tr>
                 <th>No</th>
@@ -114,7 +111,7 @@
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save changes</button>
+              <button type="submit" class="btn btn-primary">Save Changes</button>
             </div>
             </form>
           </div>

@@ -4,7 +4,7 @@
                 <h1>Ulasan Buku</h1>
                 <hr>
                 <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="example1" width="100%" cellspacing="0">
                     <thead>
             <tr>
                 <th>No</th>
@@ -83,7 +83,7 @@
                     ?>
               </div>
             </div>
-                <button type="submit" class="btn btn-primary">SIMPAN</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
 
               </div>
             </div>
@@ -122,7 +122,7 @@
 
                                 <div class="modal-footer justify-content-between">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
                                    
                                 </div>
                                 

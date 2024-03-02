@@ -4,11 +4,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DIGITAL LIBRARY</title>
+  <link rel="icon" type="image/png" href="/images/PERPUS.png">
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="adminv/plugins/fontawesome-free/css/all.min.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+
+    <link rel="stylesheet" href="Adminv/plugins/fontawesome-free/css/all.min.css">
+
+    <!-- peem -->
+
+    <link rel="stylesheet" href="Adminv/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="Adminv/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="Adminv/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+    <link rel="stylesheet" href="Adminv/dist/css/adminlte.min.css?v=3.2.0">
+
+
+</head>
+
   <!-- Theme style -->
   <link rel="stylesheet" href="adminv/dist/css/adminlte.min.css">
 </head>
@@ -61,6 +74,7 @@
         <!-- Brand Logo -->
         <div class="container">
         <a href="" class="brand-link">
+          <img src="adminv/docs/assets/img/PERPUS.png" alt="#" class="brand-image img-circel elevation-3" style="opacity: .8">
           <span class="brand-text font-weight-light">DIGITAL LIBRARY</span>
         </a>
     </div>
@@ -76,7 +90,7 @@
          with font-awesome or any other icon font library -->
 
     <li class="nav-item">
-    <a href="dashboard.php?page=<?= $_SESSION['data']['Role'];?>" class="nav-link">
+    <a href="dashboard.php?page=peminjam" class="nav-link">
           <i class="nav-icon fas fa-home"></i>
           <p>
             Dashboard
@@ -102,6 +116,18 @@
             </p>
           </a>
         </li>
+        <?php 
+          if($_SESSION['data']['Role'] == 'admin'){ ?>
+              <li class="nav-item">
+          <a href="dashboard.php?page=datapetugas" class="nav-link">
+            <i class="nav-icon fa fa-users"></i>
+            <p>
+             Data Petugas
+            </p>
+          </a>
+        </li>
+       <?php   }
+        ?>
         <li class="nav-item">
           <a href="dashboard.php?page=peminjaman" class="nav-link">
             <i class="nav-icon fa fa-user"></i>
@@ -119,7 +145,7 @@
           <a href="dashboard.php?page=koleksi" class="nav-link">
             <i class="nav-icon fa fa-tag"></i>
             <p>
-              Koleksi Pribadi
+              Riwayat Peminjaman 
             </p>
           </a>
         </li>

@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="card-body"><h1> koleksi Pribadi </h1>
+    <div class="card-body"><h1> Riwayat Peminjaman </h1>
     <hr>
 
 <?php 
@@ -13,7 +13,7 @@
 <div class="table-responsive">
 </hr>
 <div class="card-body"> 
-    <table class= "table table-bordered" id="datatable" width="100%" cellspacing="0">
+    <table class= "table table-bordered" id="example1" width="100%" cellspacing="0">
         <thead>
             <tr>
                 <th>No</th>
@@ -36,6 +36,7 @@
                     <td><?= $d['Penulis']; ?></td>
                     <td><?= $d['Penerbit']; ?></td>
                     <td><?= $d['TahunTerbit']; ?></td>
+                    
                     <td><?php 
                             foreach($fung->katbuku($d['BukuID']) as $k){ ?>
                             <span class="badge badge-primary"><?= $k['NamaKategori']; ?></span>
@@ -51,6 +52,8 @@
         </tbody>
     </table>
 </div>
+</div>
+
 
 
 <div class="modal fade" id="tambahdatabuku">
@@ -93,7 +96,7 @@
                     ?>
               </div>
             </div>
-                <button type="submit" class="btn btn-primary">SIMPAN</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
 
               </div>
             </div>
@@ -132,7 +135,7 @@
 
                                 <div class="modal-footer justify-content-between">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
                                    
                                 </div>
                                 

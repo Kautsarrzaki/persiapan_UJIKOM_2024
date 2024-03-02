@@ -21,7 +21,7 @@
         <!--/.card-body -->
       
         <div class="card-body">
-            <table class="table table-bordered" id="datatable" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="example1" width="100%" cellspacing="0">
                 <thead>
                     <tr>
 
@@ -56,7 +56,7 @@
                   <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Tambah Data</h4>
+                                <h4 class="modal-title">Tambah Kategori</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true"></span>
                                 </button>
@@ -70,7 +70,7 @@
                             </div>
                         <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
             </div>
         </form>
     </div>
@@ -102,7 +102,7 @@
 
                                 <div class="modal-footer justify-content-between">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
                                    
                                 </div>
                                

@@ -7,7 +7,7 @@
 <a href="dashboard.php?page=printlaporan" class="btn btn-primary btn-sm"><i class="nav-icon fas fa-print"></i> Print</a>
 </div>
 <div class="table-responsive">
-<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+<table class="table table-bordered" id="example1" width="100%" cellspacing="0">
         <thead>
             <tr>
                 <th>No</th>
@@ -33,7 +33,7 @@
                             $sekarang = strtotime(date('Y-m-d'));
                             $kembali = strtotime($d['TanggalPengembalian']);
                             if($sekarang > $kembali) {
-                                echo "<span class='badge badge-primary'>Terlambat</span>";
+                                echo "<span class='badge badge-primary'>dipinjam</span>";
                             } else {
                                 echo $d['TanggalPengembalian'];
                             }
@@ -111,7 +111,7 @@
             </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save changes</button>
+              <button type="submit" class="btn btn-primary">Save Changes</button>
             </div>
             </form>
           </div>

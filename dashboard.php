@@ -4,18 +4,18 @@ require('config/fungsi.php');
 $fung = new Fungsi;
 if(!isset($_SESSION['data'])){
     echo "<script>";
-    echo "alert('Harus Login Dulu!');";
-      echo "window.location.href ='index.php?page=login';";
-      echo "</script>";
+    echo "alert('Logout Berhasil!');";
+    echo "window.location.href ='index.php?page=login';";
+    echo "</script>";
 }
 require('layout/dashboard/header.php');
 
 
 if($_GET['page'] == 'admin'){
-    include('auth/user.php');
+    include('auth/admin.php');
 } elseif($_GET['page'] == 'petugas'){
     include('auth/user.php');
-} elseif($_GET['page'] == 'user'){
+} elseif($_GET['page'] == 'peminjam'){
     include('auth/user.php');
 }
 
@@ -64,8 +64,7 @@ elseif($_GET['page'] == 'databuku'){
     $Penulis = $_POST['Penulis'];
     $Penerbit = $_POST['Penerbit'];
     $TahunTerbit = $_POST['TahunTerbit'];
-    $Kategori = $_POST['Kategori'];
-    $fung->updatedatabuku($BukuID, $Judul, $Penulis, $Penerbit, $TahunTerbit, $Kategori);
+    $fung->updatedatabuku($BukuID, $Judul, $Penulis, $Penerbit, $TahunTerbit);
 }elseif($_GET['page'] == 'hapusdatabuku'){
     $fung->hapusdatabuku($_GET['BukuID']);
 }elseif($_GET['page'] == 'ajukanpinjam'){
@@ -140,4 +139,36 @@ elseif($_GET['page'] == 'koleksi'){
 }elseif($_GET['page'] == 'viewkoleksi'){
     $fung->viewkoleksi();
 }
+
+ //petugas
+elseif($_GET['page'] == 'datapetugas'){
+    include('auth/datapetugas.php');
+}elseif($_GET['page'] == 'petugas'){
+    $fung->registerpetugas($query);
+}elseif($_GET['page'] == 'postregisterpetugas'){
+        $data['NamaLengkap'] = $_POST['NamaLengkap'];
+        $data['Username'] = $_POST['Username'];
+        $data['Password'] = $_POST['Password'];
+        $data['Email'] = $_POST['Email'];
+        $data['Alamat'] = $_POST['Alamat'];
+        $fung->registerpetugas($data);
+}elseif ($_GET['page'] == 'editpetugas') {
+    $UserID = $_POST['UserID'];
+    $fung->editpetugas($UserID);
+} elseif ($_GET['page'] == 'updatepetugas') {
+    $UserID = $_POST['UserID'];
+    $NamaLengkap = $_POST['NamaLengkap'];
+    $Username = $_POST['Username'];
+    $Password = $_POST['Password'];
+    $Email = $_POST['Email'];
+    $Alamat = $_POST['Alamat'];
+    $fung->updatepetugas($UserID, $NamaLengkap, $Username, $Password, $Email, $Alamat);
+}elseif($_GET['page'] == 'hapuspetugas'){
+    $fung->hapuspetugas($_GET['UserID']);
+}elseif ($_GET['page'] == 'resetpassword') {
+
+    $fung->resetPassword($_POST['UserID']);
+}
+
+
 include "layout/dashboard/footer.php";

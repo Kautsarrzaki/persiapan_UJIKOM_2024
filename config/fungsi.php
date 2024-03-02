@@ -5,7 +5,7 @@ require "config/koneksi.php";
 class Fungsi {
     public function viewKategori(){
         $cek = new Koneksi;
-        $sql = "SELECT * FROM Kategoribuku";
+        $sql = "SELECT * FROM Kategoribuku ORDER BY KategoriID desc";
         $query = mysqli_query($cek->koneksi(),$sql);
         $select = [];
         while($d = mysqli_fetch_assoc($query)){
@@ -20,7 +20,7 @@ class Fungsi {
         if ($hitung < 1){
             $query = mysqli_query($cek->koneksi(), $sql);
                 echo "<script>";
-                echo 'alert(" Berhasil Ditambahkan!"); ' ;
+                echo 'alert(" Berhasil Ditambahkan!");';
                 echo 'window.location.href = "dashboard.php?page=kategoribuku";';
                 echo '</script>';
                 // echo '<script>window.location="dashboard.php?page=kategoribuku"</script>';
@@ -56,14 +56,14 @@ class Fungsi {
         $query = mysqli_query($cek->koneksi(),$sql);
         if($query){
             echo "<script>";
-            // echo 'alert("berhasil edit data");';
+            echo 'alert("Berhasil Edit Data!");';
             // echo 'window.location.href = "dashboard.php?page=kategoribuku";';
             echo '</script>';
             echo '<script>window.location="dashboard.php?page=kategoribuku"</script>';
 
          }else{
             echo "<script>";
-            // echo 'alert("berhasil edit data");';
+            echo 'alert("Gagal Edit Data!");';
             // echo 'window.location.href = "dashboard.php?page=kategoribuku";';
             echo '</script>';
             echo '<script>window.location="dashboard.php?page=kategoribuku"</script>';
@@ -78,7 +78,7 @@ class Fungsi {
         $query = mysqli_query($cek->koneksi(), $sql);
         
         echo "<script>";
-        // echo 'alert("Kategori berhasil dihapus"); ' ;
+        echo 'alert("Kategori Berhasil Dihapus!"); ' ;
         // echo 'window.location.href = "dashboard.php?page=kategoribuku";';
         echo '</script>';
 
@@ -90,7 +90,7 @@ class Fungsi {
     //data buku
     public function viewbuku(){
         $cek = new Koneksi;
-        $sql = "SELECT * FROM buku";
+        $sql = "SELECT * FROM buku ORDER BY BukuID desc";
         $query = mysqli_query($cek->koneksi(),$sql);
         $select = [];
         while($d = mysqli_fetch_assoc($query)){
@@ -111,6 +111,13 @@ class Fungsi {
     public function tambahdatabuku($Judul, $Penulis, $Penerbit, $TahunTerbit, $Kategori){
         $set = new Koneksi;
         $sql = "INSERT INTO buku VALUES (NULL,'$Judul', '$Penulis', '$Penerbit', '$TahunTerbit')";
+        if($Kategori == NULL){
+                echo "<script>";
+                echo 'alert("Gagal Tambah Data!");';
+                echo 'window.location.href = "dashboard.php?page=databuku";';
+                echo '</script>';
+                exit();
+        }
 
         mysqli_query($set->koneksi(), $sql);
         $buk = "SELECT * FROM buku order by BukuID desc limit 1";
@@ -118,11 +125,10 @@ class Fungsi {
         $data = mysqli_fetch_assoc($qkat);
         $BukuID = $data['BukuID'];
 
-        // foreach($data as $k){
-            $sql2 = "INSERT INTO kategoribuku_relasi VALUES (NULL,'$BukuID', '$Kategori')";
-            var_dump($sql2);
+        foreach($Kategori as $k){
+            $sql2 = "INSERT INTO kategoribuku_relasi VALUES (NULL,'$BukuID', '$k')";
             $query2 = mysqli_query($set->koneksi(), $sql2);
-        // }
+        }
         if($query2){
             echo "<script>";
             echo 'alert("Berhasil Tambah Data!");';
@@ -130,8 +136,8 @@ class Fungsi {
             echo '</script>';
         } else {
             echo "<script>";
-            echo 'alert("Berhasil Tambah Data!");';
-            echo 'window.location.href = "dashboard.php?page=databuku";';
+                echo 'alert("Berhasil Tambah Data!");';
+                echo 'window.location.href = "dashboard.php?page=databuku";';
             echo '</script>';
         }
     }
@@ -151,25 +157,25 @@ class Fungsi {
             echo '<script>window.location="dashboard.php?page=databuku"</script>';
 
     }
-    public function updatedatabuku($BukuID, $Judul, $Penulis, $Penerbit, $TahunTerbit)
+    public function updatedatabuku($BukuID, $Judul, $Penulis, $Penerbit, $TahunTerbit,)
     {
         $cek = new Koneksi;
         $sql = "UPDATE buku SET Judul = '$Judul', Penulis = '$Penulis', Penerbit = '$Penerbit', TahunTerbit = '$TahunTerbit' WHERE BukuID='$BukuID'";
         $query = mysqli_query($cek->koneksi(),$sql);
         if($query){
             echo "<script>";
-            // echo 'alert("berhasil edit data");';
-            // echo 'window.location.href = "dashboard.php?page=databuku";';
+            echo 'alert("Berhasil Edit Data!");';
+            echo 'window.location.href = "dashboard.php?page=databuku";';
             echo '</script>';
-            echo '<script>window.location="dashboard.php?page=databuku"</script>';
+            //echo '<script>window.location="dashboard.php?page=databuku"</script>';
 
          }else{
             echo "<script>";
-            // echo 'alert("berhasil edit data");';
-            // echo 'window.location.href = "dashboard.php?page=databuku";';
+            echo 'alert("Gagal Edit Data!");';
+            echo 'window.location.href = "dashboard.php?page=databuku";';
             echo '</script>';
          }
-         echo '<script>window.location="dashboard.php?page=databuku"</script>';
+         //echo '<script>window.location="dashboard.php?page=databuku"</script>';
 
     }
     public function hapusdatabuku($BukuID)
@@ -179,8 +185,8 @@ class Fungsi {
         $query = mysqli_query($cek->koneksi(), $sql);
         
         echo "<script>";
-        // echo 'alert("Buku berhasil dihapus"); ' ;
-        // echo 'window.location.href = "dashboard.php?page=databuku";';
+        echo 'alert("Buku Berhasil Dihapus!"); ' ;
+        echo 'window.location.href = "dashboard.php?page=databuku";';
         echo '</script>';
 
         echo '<script>window.location="dashboard.php?page=databuku"</script>';
@@ -192,7 +198,7 @@ class Fungsi {
         $query = mysqli_query($set->koneksi(), $sql);
         if($query){
             echo "<script>";
-            echo 'alert("Berhasil Pinjam Buku menunggu persetujuan!");';
+            echo 'alert("Berhasil Pinjam Buku Menunggu Persetujuan!");';
             echo 'window.location.href = "dashboard.php?page=databuku";';
             echo '</script>';
         } else {
@@ -372,7 +378,7 @@ public function ulasanbuku($UserID,$BukuID,$Ulasan,$Rating)
             $query = mysqli_query($set->koneksi(), $sql);
             if($query){
                 echo "<script>";
-                echo 'alert("Berhasil Pinjam Buku menunggu persetujuan!");';
+                echo 'alert("Berhasil Pinjam Buku Menunggu Persetujuan!");';
                 echo 'window.location.href = "dashboard.php?page=databuku";';
                 echo '</script>';
             } else {
@@ -387,23 +393,23 @@ public function ulasanbuku($UserID,$BukuID,$Ulasan,$Rating)
             $sql = "UPDATE peminjaman SET UserID='$UserID', BukuID='$BukuID',TanggalPengembalian='$TanggalPengembalian',StatusPeminjaman='pinjam' WHERE PeminjamanID='$PeminjamanID'";
             $query = mysqli_query($set->koneksi(), $sql);
 
-            $sql2 = "insert into koleksipribadi VALUES (NULL, '$UserID', '$BukuID')";
+            $sql2 = "INSERT into koleksipribadi VALUES (NULL, '$UserID', '$BukuID')";
             $query2 = mysqli_query($set->koneksi(), $sql2);
             if($query2){
                 echo "<script>";
-                echo 'alert("Berhasil konfirmasi dan masuk ke Koleksi Pribadi User!");';
+                echo 'alert("Berhasil Konfirmasi dan Masuk ke Koleksi Pribadi User!");';
                 echo 'window.location.href = "dashboard.php?page=peminjaman";';
                 echo '</script>';
             } else {
                 echo "<script>";
-                echo 'alert("Gagal konfirmasi!");';
+                echo 'alert("Gagal Konfirmasi!");';
                 echo 'window.location.href = "dashboard.php?page=peminjaman";';
                 echo '</script>';
             }
         }
         public function konfirmasipengembalian($PeminjamanID){
             $set = new Koneksi;
-            $sql = "update peminjaman SET StatusPeminjaman='selesai' WHERE PeminjamanID='$PeminjamanID'";
+            $sql = "UPDATE peminjaman SET StatusPeminjaman='selesai' WHERE PeminjamanID='$PeminjamanID'";
             $query = mysqli_query($set->koneksi(), $sql);
             if($query){
                 echo "<script>";
@@ -430,6 +436,100 @@ public function ulasanbuku($UserID,$BukuID,$Ulasan,$Rating)
     
             echo '<script>window.location="dashboard.php?page=peminjaman"</script>';
         }
-    
+        
+     public function datapetugas()
+        {
+            $cek = new Koneksi;
+            $sql = "SELECT * from user WHERE Role='petugas' ORDER BY UserID DESC";
+            $query = mysqli_query($cek->koneksi(), $sql);
+            $select = [];
+            while ($d = mysqli_fetch_assoc($query)) {
+                $select[] = $d;
+            }
+            return $select;
+        }
+        //edit petugas
+    public function editpetugas($UserID)
+    {
+        $cek = new Koneksi;
+        $sql = "SELECT * FROM user WHERE UserID = '$UserID'";
+        $query = mysqli_query($cek->koneksi(), $sql);
+        $data = mysqli_fetch_assoc($query);
+        return $data;
+    }
+    //untuk mengupdate
+    public function updatepetugas($UserID, $NamaLengkap, $Username, $Password, $Email, $Alamat)
+    {
+        $cek = new Koneksi;
+        $Password = password_hash($_POST['Password'], PASSWORD_BCRYPT);
+        $sql = "UPDATE user SET NamaLengkap='$NamaLengkap' , Username='$Username', Password='$Password', Email='$Email', Alamat='$Alamat' WHERE UserID = '$UserID'";
+        $query = mysqli_query($cek->koneksi(), $sql);
+        //jika query berjalan maka berhasil
+        if ($query) {
+            echo "<script>";
+            echo 'alert("Petugas Berhasil Diubah!"); ';
+            //echo 'window.location.href = "dashboard.php?page=datapetugas";';
+             echo 'window.location.href = "dashboard.php?page=datapetugas";';
+            echo '</script>';
+            //jika gagal
+        } else {
+            echo "<script>";
+            echo 'alert("Petugas Gagal Diubah!"); ';
+            //echo 'window.location.href = "dashboard.php?page=datapetugas";';
+            echo '</script>';
+        }
+    }
+          public function hapuspetugas($UserID)
+        {
+            $cek = new Koneksi;
+            $sql = "DELETE FROM user WHERE UserID = '$UserID'";
+            $query = mysqli_query($cek->koneksi(), $sql);
+            
+            echo "<script>";
+             echo 'alert("Petugas Berhasil Dihapus!"); ' ;
+             echo 'window.location.href = "dashboard.php?page=datapetugas";';
+            echo '</script>';
+        }
+
+          public function registerpetugas($data){
+
+        $cek = new Koneksi;
+        $Username = $data['Username'];
+        $Password = password_hash($data['Password'], PASSWORD_BCRYPT);
+        $Email = $data['Email'];
+        $NamaLengkap = $data['NamaLengkap'];
+        $Alamat = $data['Alamat'];
+        $sql = "INSERT INTO user VALUES (Null, '$Username', '$Password','$Email','$NamaLengkap','$Alamat','petugas')";
+        $query = mysqli_query($cek->koneksi(), $sql);
+ 
+         if ($query) {
+             echo "<script>";
+             echo "alert('Data Berhasil Ditambahkan!');";
+             echo "window.location.href ='dashboard.php?page=datapetugas';";
+             echo "</script>";
+      } else {
+             echo "Data Gagal Ditambahkan!";
+      }
+ } 
+ public function resetPassword($UserID)
+    {
+        $cek = new Koneksi;
+        $hashedPassword = password_hash('12345', PASSWORD_BCRYPT);
+        $sql = "UPDATE user SET Password='$hashedPassword' WHERE UserID = '$UserID'";
+        //  var_dump($UserID);
+        $query = mysqli_query($cek->koneksi(), $sql);
+
+        if ($query) {
+            echo "<script>";
+            echo 'alert("Berhasil Mengatur Ulang Kata Sandi menjadi 12345!"); ';
+            echo 'window.location.href = "dashboard.php?page=datapetugas";';
+            echo '</script>';
+        } else {
+            echo "<script>";
+            echo 'alert("Gagal Mereset Password!"); ';
+            echo 'window.location.href = "dashboard.php?page=datapetugas";';
+            echo '</script>';
+        }
+    }
 
 }

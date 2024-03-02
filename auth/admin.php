@@ -8,7 +8,6 @@
 </div>
 </div>
 <div class="card-body">
-<h1>selamat datang <?= $_SESSION['data'] ['Role']; ?> </h1>
-
+<h1>selamat datang <?= $_SESSION['data'] ['NamaLengkap']; ?> </h1>
 
 </div>
